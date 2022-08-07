@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'new_waste_screen.dart';
 import '../widgets/list_posts.dart';
-import '../widgets/find_sum.dart';
+import '../widgets/total_count.dart';
 
 class WasteListScreen extends StatefulWidget {
 
@@ -38,10 +38,10 @@ class _WasteListScreenState extends State<WasteListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      centerTitle: true,
-      title: const Text('Wasteagram')
+        centerTitle: true,
+        title: totalCount(context),
       ),
-      body: ListPosts(),      
+      body: ListPosts(),     
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Semantics(
         button: true,
