@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'new_waste_screen.dart';
 import '../widgets/list_posts.dart';
+import '../widgets/find_sum.dart';
 
 class WasteListScreen extends StatefulWidget {
 
@@ -18,6 +19,7 @@ class WasteListScreen extends StatefulWidget {
 class _WasteListScreenState extends State<WasteListScreen> {
 
   File? image;
+  int sum = 0;
 
   // pick an image from the gallery, upload it to Firebase Storage and return 
   // the URL of the image in Firebase Storage.
@@ -37,7 +39,8 @@ class _WasteListScreenState extends State<WasteListScreen> {
     return Scaffold(
       appBar: AppBar(
       centerTitle: true,
-      title: const Text('Wasteagram')),
+      title: const Text('Wasteagram')
+      ),
       body: ListPosts(),      
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Semantics(
