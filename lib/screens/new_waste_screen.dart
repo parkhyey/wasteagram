@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import '../models/food_waste_post.dart';
+import '../models/food_waste_post_DTO.dart';
 import 'waste_list_screen.dart';
-import '../models/numeric_keypad.dart';
 
 class NewWasteScreen extends StatefulWidget {
   String imageURL;
@@ -19,7 +19,7 @@ class NewWasteScreen extends StatefulWidget {
 
 class _NewWasteScreenState extends State<NewWasteScreen> {
   final _formkey = GlobalKey<FormState>();
-  FoodWastePost newPost = FoodWastePost();
+  FoodWastePostDTO newPost = FoodWastePostDTO();
   LocationData? geoData;
   
   Future<List<Map<String, dynamic>>> loadImages() async {
@@ -124,15 +124,7 @@ class _NewWasteScreenState extends State<NewWasteScreen> {
                 newPost.imageURL = widget.imageURL;
                 newPost.date = DateTime.now();
                 //create post and save to Firebase
-                FirebaseFirestore.instance
-                  .collection('posts')
-                  .add({
-                  'date': newPost.date,
-                  'latitude': newPost.latitude,
-                  'longitude': newPost.longitude,
-                  'quantity': newPost.quantity,
-                  'imageURL': newPost.imageURL,
-                });
+                newPost.addToCloud();
                 Navigator.of(context).pop();
               }
             },
@@ -190,4 +182,13 @@ class _NewWasteScreenState extends State<NewWasteScreen> {
     }
   }
 
+}
+
+class NumericKeypad extends TextInputFormatter {
+  static final _reg = RegExp(r'^\d+$');
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return _reg.hasMatch(newValue.text) ? newValue : oldValue;
+  }
 }

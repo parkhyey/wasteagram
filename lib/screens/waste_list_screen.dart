@@ -23,7 +23,7 @@ class _WasteListScreenState extends State<WasteListScreen> {
 
   // pick an image from the gallery, upload it to Firebase Storage and return 
   // the URL of the image in Firebase Storage.
-  Future getImage() async {
+  Future getImage(context) async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     image = File(pickedFile!.path);
     var fileName = '${DateTime.now()}.jpg';
@@ -49,10 +49,8 @@ class _WasteListScreenState extends State<WasteListScreen> {
         onTapHint: 'Select an image' ,
         child: FloatingActionButton(
           onPressed: () async {
-            String imageURL = await getImage();
-            Navigator.push(
-              context,
-              MaterialPageRoute(
+            String imageURL = await getImage(context);
+            Navigator.push(context, MaterialPageRoute(
                 builder: (context) => NewWasteScreen(imageURL: imageURL)));
           },
           child: const Icon(Icons.camera_alt),
