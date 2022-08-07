@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'new_waste_screen.dart';
 import '../widgets/list_posts.dart';
-import '../widgets/total_count.dart';
+import '../widgets/total_sum.dart';
 
 class WasteListScreen extends StatefulWidget {
 
@@ -39,7 +39,7 @@ class _WasteListScreenState extends State<WasteListScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: totalCount(context),
+        title: totalSum(context),
       ),
       body: ListPosts(),     
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
