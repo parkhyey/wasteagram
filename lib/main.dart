@@ -10,10 +10,6 @@ import 'app.dart';
 String DSN_URL = '$MY_DSN_URL';
 
 Future<void> main() async {
-  await SentryFlutter.init(
-    (options) => options.dsn = DSN_URL,
-    appRunner: () => runApp(App()),
-  );
 
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
@@ -22,5 +18,9 @@ Future<void> main() async {
     DeviceOrientation.landscapeRight]);
 
   await Firebase.initializeApp();
-  runApp(App());
+  await SentryFlutter.init(
+    (options) => options.dsn = DSN_URL,
+    appRunner: () => runApp(App()),
+  );
+  
 }
