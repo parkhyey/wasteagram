@@ -16,7 +16,7 @@ void main() {
     'longitude' : longitude
   });
 
-  //Unit tests to check model variable assignments
+  // unit tests to check FoodWastePost model 
   test('Expect new post imageURL matches $imageURL', () {
     expect(newWastePost.imageURL, imageURL);
   });

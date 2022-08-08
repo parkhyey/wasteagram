@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,7 +21,18 @@ class ListScreen extends StatefulWidget {
 class _ListScreenState extends State<ListScreen> {
 
   File? image;
-  int sum = 0;
+
+  // adding Firebase Analytics---------------------
+  late final FirebaseAnalyticsObserver observer;
+  late final FirebaseAnalytics analytics;
+  String _message = '';
+
+  void setMessage(String message) {
+    setState(() {
+      _message = message;
+    },);
+  }
+  // until here------------------------------------
 
   // pick an image from the gallery, upload it to Firebase Storage and return 
   // the URL of the image in Firebase Storage.
@@ -50,6 +63,7 @@ class _ListScreenState extends State<ListScreen> {
         child: FloatingActionButton(
           onPressed: () async {
             String imageURL = await getImage(context);
+            // ignore: use_build_context_synchronously
             Navigator.push(context, MaterialPageRoute(
                 builder: (context) => NewScreen(imageURL: imageURL)));
           },
