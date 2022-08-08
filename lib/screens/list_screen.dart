@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'new_screen.dart';
 import '../widgets/list_builder.dart';
 import '../widgets/total_sum.dart';
+import 'new_screen.dart';
 
 class ListScreen extends StatefulWidget {
 
