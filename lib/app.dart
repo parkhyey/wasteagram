@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/waste_list_screen.dart';
+import 'screens/list_screen.dart';
 
 class App extends StatefulWidget {
 
@@ -19,7 +19,7 @@ class AppState extends State<App> {
         primarySwatch: Colors.blueGrey,
         brightness: Brightness.dark,
       ),
-      home: WasteListScreen()
+      home: ListScreen()
     );
   }
 

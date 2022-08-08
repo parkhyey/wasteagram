@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
-class WasteDetailScreen extends StatelessWidget {
+class DetailScreen extends StatelessWidget {
   
   DocumentSnapshot post;
-  WasteDetailScreen({Key? key, required this.post}) : super(key: key);
+  DetailScreen({Key? key, required this.post}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {

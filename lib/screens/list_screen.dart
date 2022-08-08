@@ -2,21 +2,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'new_waste_screen.dart';
-import '../widgets/list_posts.dart';
+import 'new_screen.dart';
+import '../widgets/list_builder.dart';
 import '../widgets/total_sum.dart';
 
-class WasteListScreen extends StatefulWidget {
+class ListScreen extends StatefulWidget {
 
   FirebaseStorage storage = FirebaseStorage.instance;
-  WasteListScreen({Key? key}) : super(key: key);
+  ListScreen({Key? key}) : super(key: key);
 
   @override
-  State<WasteListScreen> createState() => _WasteListScreenState();
+  State<ListScreen> createState() => _ListScreenState();
 
 }
 
-class _WasteListScreenState extends State<WasteListScreen> {
+class _ListScreenState extends State<ListScreen> {
 
   File? image;
   int sum = 0;
@@ -41,7 +41,7 @@ class _WasteListScreenState extends State<WasteListScreen> {
         centerTitle: true,
         title: totalSum(context),
       ),
-      body: ListPosts(),     
+      body: ListBuilder(),     
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Semantics(
         button: true,
@@ -51,7 +51,7 @@ class _WasteListScreenState extends State<WasteListScreen> {
           onPressed: () async {
             String imageURL = await getImage(context);
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => NewWasteScreen(imageURL: imageURL)));
+                builder: (context) => NewScreen(imageURL: imageURL)));
           },
           child: const Icon(Icons.camera_alt),
         ),

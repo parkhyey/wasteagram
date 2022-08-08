@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import '../models/food_waste_post.dart';
 import '../models/food_waste_post_DTO.dart';
-import 'waste_list_screen.dart';
+import 'list_screen.dart';
 
-class NewWasteScreen extends StatefulWidget {
+class NewScreen extends StatefulWidget {
   String imageURL;
   
   FirebaseStorage storage = FirebaseStorage.instance;
-  NewWasteScreen({Key? key, required this.imageURL}) : super(key: key);
+  NewScreen({Key? key, required this.imageURL}) : super(key: key);
 
   @override
-  State<NewWasteScreen> createState() => _NewWasteScreenState();
+  State<NewScreen> createState() => _NewScreenState();
 }
 
-class _NewWasteScreenState extends State<NewWasteScreen> {
+class _NewScreenState extends State<NewScreen> {
   final _formkey = GlobalKey<FormState>();
   FoodWastePostDTO newPost = FoodWastePostDTO();
   LocationData? geoData;
@@ -165,7 +163,7 @@ class _NewWasteScreenState extends State<NewWasteScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                              builder: (context) => WasteListScreen()));
+                              builder: (context) => ListScreen()));
                         },
                         child: const Text('Ok'))
                   ]
