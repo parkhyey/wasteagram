@@ -51,8 +51,9 @@ class _NewScreenState extends State<NewScreen> {
       body: FutureBuilder(
         future: loadImages(),
         builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-          // if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          if (newPost.quantity == null) {
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
             return ListView.builder(
               itemCount: 1,
               itemBuilder: (context, index) {
@@ -95,8 +96,6 @@ class _NewScreenState extends State<NewScreen> {
                 );
               },
             );
-          } else {
-            return const Center(child: CircularProgressIndicator(),);
           }
         },
       ),
