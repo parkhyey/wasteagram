@@ -10,7 +10,7 @@ import '../models/food_waste_post_DTO.dart';
       child: TextFormField(
         textAlign: TextAlign.center,
         autofocus: true,
-        inputFormatters: [NumericKeypad(),],
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         keyboardType: TextInputType.number,
         decoration: const InputDecoration(
           hintText: 'Number of Wasted Items',
@@ -30,13 +30,3 @@ import '../models/food_waste_post_DTO.dart';
     );
 
  }
- 
-class NumericKeypad extends TextInputFormatter {
-  static final _reg = RegExp(r'^\d+$');
-
-  @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    return _reg.hasMatch(newValue.text) ? newValue : oldValue;
-  }
-  
-}
