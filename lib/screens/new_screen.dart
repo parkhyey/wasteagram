@@ -18,7 +18,7 @@ class NewScreen extends StatefulWidget {
 }
 
 class _NewScreenState extends State<NewScreen> {
-  final _formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   FoodWastePostDTO newPost = FoodWastePostDTO();
   LocationData? geoData;
   
@@ -61,7 +61,7 @@ class _NewScreenState extends State<NewScreen> {
               itemBuilder: (context, index) {
                 var loadImage = Image.network(widget.imageURL);
                 return Form(
-                  key: _formkey,
+                  key: formkey,
                   child: Column(
                     children: [
                       SizedBox(height: 240, child: loadImage),
@@ -79,7 +79,7 @@ class _NewScreenState extends State<NewScreen> {
         },
       ),
     bottomNavigationBar: 
-      bottomAppBar(context, _formkey, newPost, geoData, widget.imageURL),
+      bottomAppBar(context, formkey, newPost, geoData, widget.imageURL),
     );
   }
 

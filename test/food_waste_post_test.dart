@@ -17,23 +17,23 @@ void main() {
   });
 
   //Unit tests to check model variable assignments
-  test('Expect new post imageURL matches', () {
+  test('Expect new post imageURL matches $imageURL', () {
     expect(newWastePost.imageURL, imageURL);
   });
 
-  test('Expect new post quantity matches', () {
+  test('Expect new post quantity matches $quantity', () {
     expect(newWastePost.quantity, quantity);
   });
 
-  test('Expect new post latitude matches', () {
+  test('Expect new post latitude matches $latitude', () {
     expect(newWastePost.latitude, latitude);
   });
 
-  test('Expect new post longitude matches', () {
+  test('Expect new post longitude matches $longitude', () {
     expect(newWastePost.longitude, longitude);
   });
 
-  test('Expect new post date equals $date', () {
+  test('Expect new post date matches $date', () {
     expect(newWastePost.date, date);
   });
 
