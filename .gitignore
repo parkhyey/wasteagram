@@ -1,3 +1,6 @@
+# Sentry DSN
+/lib/auth/sentry_dsn.dart
+
 # Miscellaneous
 *.class
 *.log
