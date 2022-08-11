@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,6 +22,19 @@ class _ListScreenState extends State<ListScreen> {
 
   File? image;
 
+  // // adding Firebase Analytics---------------------
+  // late final FirebaseAnalyticsObserver observer;
+  // late final FirebaseAnalytics analytics;
+  // String _message = '';
+
+  // void setMessage(String message) {
+  //   setState(() {
+  //     _message = message;
+  //   },);
+  // }
+  // // until here------------------------------------
+
+
   // pick an image from the gallery, upload it to Firebase Storage and return 
   // the URL of the image in Firebase Storage.
   Future getImage(context) async {
@@ -32,9 +47,9 @@ class _ListScreenState extends State<ListScreen> {
     final url = await storageReference.getDownloadURL();
     return url;
   }
-
   @override
   Widget build(BuildContext context) {
+    // _sendCurrentTabToAnalytics();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -59,4 +74,7 @@ class _ListScreenState extends State<ListScreen> {
     );
   }
 
+  // void _sendCurrentTabToAnalytics() {
+  //   observer.analytics.setCurrentScreen(screenName: 'List Screen');
+  // }
 }

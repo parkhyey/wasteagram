@@ -1,11 +1,14 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import '../models/food_waste_post_DTO.dart';
 import '../widgets/bottom_appbar.dart';
 import '../widgets/new_post_form.dart';
 import 'list_screen.dart';
+import '../app.dart';
 
 class NewScreen extends StatefulWidget {
   String imageURL;
@@ -21,7 +24,7 @@ class _NewScreenState extends State<NewScreen> {
   final formkey = GlobalKey<FormState>();
   FoodWastePostDTO newPost = FoodWastePostDTO();
   LocationData? geoData;
-  
+
   Future<List<Map<String, dynamic>>> loadImages() async {
     List<Map<String, dynamic>> files = [];
 
@@ -53,9 +56,6 @@ class _NewScreenState extends State<NewScreen> {
       body: FutureBuilder(
         future: loadImages(),
         builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
             return ListView.builder(
               itemCount: 1,
               itemBuilder: (context, index) {
@@ -76,7 +76,6 @@ class _NewScreenState extends State<NewScreen> {
               },
             );
           }
-        },
       ),
     bottomNavigationBar: 
       bottomAppBar(context, formkey, newPost, geoData, widget.imageURL),
@@ -129,5 +128,21 @@ class _NewScreenState extends State<NewScreen> {
     geoData = null;
     }
   }
+
+
+  // void _openGallery() async {
+  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  //   image = XFile(pickedFile!.path);
+  //   imageSelected = true;
+  //   setState(() {});
+  // }
+
+  // void _openCamera() async {
+  //   final pickedFile = await picker.pickImage(source: ImageSource.camera);
+  //   image = XFile(pickedFile!.path);
+  //   imageSelected = true;
+  //   setState(() {});
+  // }
+
 
 }
