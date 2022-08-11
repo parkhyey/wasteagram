@@ -3,17 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 class DetailScreen extends StatelessWidget {
-  
   DocumentSnapshot post;
   DetailScreen({Key? key, required this.post}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     DateTime time = post['date'].toDate();
+
     return Scaffold(
       appBar: AppBar(
-      centerTitle: true,
-      title: const Text('Wasteagram')),
+        centerTitle: true,
+        title: const Text('Wasteagram'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +29,6 @@ class DetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 
