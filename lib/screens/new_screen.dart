@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import '../models/waste_post_DTO.dart';
-import '../widgets/bottom_appbar.dart';
+import '../widgets/upload_post_button.dart';
 
 class NewScreen extends StatefulWidget {
   FirebaseStorage storage = FirebaseStorage.instance;

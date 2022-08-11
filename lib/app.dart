@@ -8,7 +8,6 @@ import 'screens/new_screen.dart';
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
 
-  // EXTRA CREDIT: Sentry Crash Report
   static Future<void> reportError(dynamic error, dynamic stackTrace) async {
     final sentryId =
         await Sentry.captureException(error, stackTrace: stackTrace);

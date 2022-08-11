@@ -11,11 +11,11 @@ Widget uploadPostButton(BuildContext context, GlobalKey<FormState> formkey,
     onPressed: () async {
       if (formkey.currentState!.validate()) {
         formkey.currentState!.save();
-        
         var fileName = '${DateTime.now()}.jpg';
         Reference storageReference = FirebaseStorage.instance.ref().child(fileName);       
         await storageReference.putFile(File(imageURL));
         String url = await storageReference.getDownloadURL();
+        
         newPost.latitude = geoData!.latitude;
         newPost.longitude = geoData.longitude;
         newPost.imageURL = url;

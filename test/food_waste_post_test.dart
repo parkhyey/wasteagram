@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wasteagram/models/food_waste_post.dart';
+import 'package:wasteagram/models/waste_post.dart';
 
 void main() {
   final date = DateTime.now();
@@ -8,7 +8,7 @@ void main() {
   const latitude = 1.0;
   const longitude = -2.0;
 
-  final newWastePost = FoodWastePost.fromMap({
+  final newWastePost = WastePost.fromMap({
     'date' : date,
     'imageURL' : imageURL,
     'quantity' : quantity,
