@@ -1,5 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'auth/sentry_dsn.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,5 +23,5 @@ Future<void> main() async {
     (options) => options.dsn = DSN_URL,
     appRunner: () => runApp(App()),
   );
-  
+
 }
