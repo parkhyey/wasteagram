@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // EXTRA CREDIT: Display the total sum of wasted items
- Widget totalSum(BuildContext context){
+class TotalSum extends StatelessWidget {
+  const TotalSum({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection('posts').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -21,5 +24,6 @@ import 'package:flutter/material.dart';
             style: TextStyle(fontWeight: FontWeight.bold));}
       },
     );
-
   }
+
+}
