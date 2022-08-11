@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import '../models/waste_post_DTO.dart';
 import '../widgets/upload_post_button.dart';
+import '../widgets/new_post_form.dart';
 
 class NewScreen extends StatefulWidget {
   FirebaseStorage storage = FirebaseStorage.instance;
@@ -58,26 +59,7 @@ class _NewScreenState extends State<NewScreen> {
           child: Column(children: [
             const SizedBox(height: 20),
             Image.file(File(image!.path), height: 250),
-            TextFormField(
-              textAlign: TextAlign.center, 
-              autofocus: true,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                hintText: 'Number of Wasted Items',
-                contentPadding: EdgeInsets.zero,
-              ),
-              style: const TextStyle(fontSize: 25.0, height: 2.0),
-              onSaved: (value) {
-                newPost.quantity = int.tryParse(value!); },
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please enter the number of items.';
-                }
-                return null;
-              },
-            ),
-            
+            newPostForm(context, newPost),            
           ],),
         ),
       ),

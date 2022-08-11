@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../models/waste_post.dart';
+import '../models/waste_post_DTO.dart';
 
-Widget newPostForm(BuildContext context, WastePost newPost){
+Widget newPostForm(BuildContext context, WastePostDTO newPost){
 
   return Semantics(
     textField: true,
