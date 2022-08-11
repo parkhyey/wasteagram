@@ -20,12 +20,11 @@ class _NewScreenState extends State<NewScreen> {
   final formkey = GlobalKey<FormState>();
   LocationData? geoData;
   WastePostDTO newPost = WastePostDTO();
-  int? quantity;
-  XFile? image;
   final picker = ImagePicker();
+  XFile? image;
+  Image? imageFile;
   String? url;
   bool imageSelected = false;
-  Image? imageFile;
 
   @override
   void initState() {
