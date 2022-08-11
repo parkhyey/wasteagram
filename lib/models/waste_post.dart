@@ -1,14 +1,16 @@
-class FoodWastePost {
+class WastePost {
+  DateTime? date;
   String? imageURL;
   int? quantity;
   double? latitude;
   double? longitude;
-  DateTime? date;
 
-  FoodWastePost(
-      {this.imageURL, this.quantity, this.latitude, this.longitude, this.date});
+  WastePost(
+    {this.date, this.imageURL, this.quantity, 
+    this.latitude, this.longitude}
+  );
 
-  FoodWastePost.fromMap(Map map) {
+  WastePost.fromMap(Map map) {
     date = map['date'];
     imageURL = map['imageURL'];
     quantity = map['quantity'];

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FoodWastePostDTO {
+class WastePostDTO {
   String? imageURL;
   int? quantity;
   double? latitude;
   double? longitude;
   DateTime? date;
 
-  FoodWastePostDTO(
+  WastePostDTO(
       {this.imageURL, this.quantity, this.latitude, this.longitude, this.date});
 
   void addToCloud() {
@@ -15,10 +15,10 @@ class FoodWastePostDTO {
       .collection('posts')
       .add({
       'date': date,
-      'latitude': latitude,
-      'longitude': longitude,
-      'quantity': quantity,
       'imageURL': imageURL,
+      'quantity': quantity,
+      'latitude': latitude,
+      'longitude': longitude
     });
   }
 
