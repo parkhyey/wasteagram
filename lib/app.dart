@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'screens/list_screen.dart';
 import 'screens/new_screen.dart';
 
@@ -27,14 +26,13 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     widget._sendAnalyticsEvent();
-    // sendCurrentTabToAnalytics();
     // throw StateError('error demo');
     return MaterialApp(
         title: 'Wasteagram',
         theme: ThemeData.dark(),
         routes: {
-          '/': (context) => ListScreen(analytics: analytics, observer: observer),
-          'new': (context) => NewScreen(),
+          '/': (context) => ListScreen(observer: observer),
+          'new': (context) => NewScreen(observer: observer),
         },
         navigatorObservers: <NavigatorObserver>[observer],
     );

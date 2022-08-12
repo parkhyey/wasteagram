@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../widgets/list_builder.dart';
 import '../widgets/total_sum.dart';
-import '../app.dart';
 
 class ListScreen extends StatefulWidget {
   FirebaseStorage storage = FirebaseStorage.instance;
-  FirebaseAnalytics? analytics;
   FirebaseAnalyticsObserver? observer;
-  ListScreen({Key? key, required this.analytics, required this.observer}) : super(key: key);
+  ListScreen({Key? key, required this.observer}) : super(key: key);
 
   @override
   State createState() => _ListScreenState();
@@ -17,11 +15,6 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  Future<void> _testAnalyticsData() async {
-    await widget.analytics!.logScreenView(
-      screenName: 'tabs-page',
-    );
-  }
   @override
   Widget build(BuildContext context) {
             sendCurrentTabToAnalytics();
@@ -39,15 +32,14 @@ class _ListScreenState extends State<ListScreen> {
         child: FloatingActionButton(
           onPressed: () {
             sendCurrentTabToAnalytics();
-            _testAnalyticsData();
             Navigator.of(context).pushNamed('new');},
           child: const Icon(Icons.camera_alt),
         ),
       ),
     );
   }
-    void sendCurrentTabToAnalytics() {
-    widget.observer!.analytics.setCurrentScreen(screenName: 'home');
+  void sendCurrentTabToAnalytics() {
+    widget.observer!.analytics.setCurrentScreen(screenName: 'List Screen');
   }
 
 }

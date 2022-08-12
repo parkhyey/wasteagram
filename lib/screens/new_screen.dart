@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:core';
-import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import '../models/post_model.dart';
@@ -10,7 +11,8 @@ import '../widgets/new_post_form.dart';
 
 class NewScreen extends StatefulWidget {
   FirebaseStorage storage = FirebaseStorage.instance;
-  NewScreen({Key? key}) : super(key: key);
+  FirebaseAnalyticsObserver? observer;
+  NewScreen({Key? key, required this.observer}) : super(key: key);
 
   @override
   State<NewScreen> createState() => _NewScreenState();
@@ -77,6 +79,7 @@ class _NewScreenState extends State<NewScreen> {
   ElevatedButton cameraButton() {
     return ElevatedButton(
       onPressed: () async {
+        sendCurrentTabToAnalytics();
         final pickedFile = await picker.pickImage(source: ImageSource.camera);
         image = XFile(pickedFile!.path);
         imageSelected = true;
@@ -93,6 +96,7 @@ class _NewScreenState extends State<NewScreen> {
   ElevatedButton galleryButton() {
     return ElevatedButton(
       onPressed: () async {
+        sendCurrentTabToAnalytics();
         final pickedFile = await picker.pickImage(source: ImageSource.gallery);
         image = XFile(pickedFile!.path);
         imageSelected = true;
@@ -116,6 +120,10 @@ class _NewScreenState extends State<NewScreen> {
   void _getLocation() async {
     var locationService = Location();
     geoData = await locationService.getLocation();
+  }
+
+  void sendCurrentTabToAnalytics() {
+    widget.observer!.analytics.setCurrentScreen(screenName: 'New Screen');
   }
 
 }
