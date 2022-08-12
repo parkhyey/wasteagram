@@ -6,26 +6,20 @@ import 'screens/new_screen.dart';
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
 
-  Future<void> _sendAnalyticsEvent() async {
-    // Not supported on web
-    await FirebaseAnalytics.instance.setDefaultEventParameters({
-        "version": "1.2.3"
-      });
-  }
-
   @override
   State<App> createState() => AppState();
 
 }
 
 class AppState extends State<App> {
+  
+  // EXTRA CREDIT: Firebase Analytics
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer = 
     FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
-    widget._sendAnalyticsEvent();
     // throw StateError('error demo');
     return MaterialApp(
         title: 'Wasteagram',
