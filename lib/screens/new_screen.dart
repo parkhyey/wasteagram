@@ -2,10 +2,9 @@ import 'dart:io';
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
-import '../models/waste_post_DTO.dart';
+import '../models/post_model.dart';
 import '../widgets/upload_post_button.dart';
 import '../widgets/new_post_form.dart';
 
@@ -20,7 +19,7 @@ class NewScreen extends StatefulWidget {
 class _NewScreenState extends State<NewScreen> {
   final formkey = GlobalKey<FormState>();
   LocationData? geoData;
-  WastePostDTO newPost = WastePostDTO();
+  PostModel newPost = PostModel();
   final picker = ImagePicker();
   XFile? image;
   Image? imageFile;
@@ -68,7 +67,7 @@ class _NewScreenState extends State<NewScreen> {
         child: Semantics(
           button: true,
           enabled: true,
-          onTapHint: 'Upload a post',
+          onTapHint: 'Upload new post',
           child: uploadPostButton(context, formkey, newPost, geoData, image!.path),
         ),
       ),
@@ -84,7 +83,8 @@ class _NewScreenState extends State<NewScreen> {
         setState(() {});
       }, 
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(120, 120)),
+        fixedSize: const Size(120, 120),
+        primary: const Color.fromARGB(255, 0, 175, 145),),
       child: const Text('Open\nCamera', textAlign: TextAlign.center, 
         style: TextStyle(fontSize: 20)),
     );
@@ -99,7 +99,8 @@ class _NewScreenState extends State<NewScreen> {
         setState(() {});
       }, 
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(120, 120)),
+        fixedSize: const Size(120, 120),
+        primary: const Color.fromARGB(255, 0, 175, 145),),
       child: const Text('Open\nGallery', textAlign: TextAlign.center, 
         style: TextStyle(fontSize: 20)),
     );

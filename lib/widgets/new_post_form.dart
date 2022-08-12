@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../models/waste_post_DTO.dart';
+import '../models/post_model.dart';
 
-Widget newPostForm(BuildContext context, WastePostDTO newPost){
+Widget newPostForm(BuildContext context, PostModel newPost){
 
   return Semantics(
     textField: true,
     focusable: true,
+    label: 'New post form',
     child: TextFormField(
       textAlign: TextAlign.center,
       autofocus: true,

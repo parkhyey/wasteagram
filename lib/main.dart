@@ -22,6 +22,7 @@ Future<void> main() async {
   await SentryFlutter.init(
     (options) => options.dsn = DSN_URL,
     appRunner: () => runApp(App()),
+    
   );
 
 }

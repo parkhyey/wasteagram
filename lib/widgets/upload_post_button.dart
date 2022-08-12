@@ -1,11 +1,12 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import '../models/waste_post_DTO.dart';
+import '../models/post_model.dart';
 
 Widget uploadPostButton(BuildContext context, GlobalKey<FormState> formkey, 
-  WastePostDTO newPost, LocationData? geoData, String imageURL) {
+  PostModel newPost, LocationData? geoData, String? imageURL) {
 
   return ElevatedButton(
     onPressed: () async {
@@ -13,14 +14,15 @@ Widget uploadPostButton(BuildContext context, GlobalKey<FormState> formkey,
         formkey.currentState!.save();
         var fileName = '${DateTime.now()}.jpg';
         Reference storageReference = FirebaseStorage.instance.ref().child(fileName);       
-        await storageReference.putFile(File(imageURL));
+        await storageReference.putFile(File(imageURL!));
         String url = await storageReference.getDownloadURL();
-        
-        newPost.latitude = geoData!.latitude;
-        newPost.longitude = geoData.longitude;
-        newPost.imageURL = url;
-        newPost.date = DateTime.now();
-        newPost.addToCloud();
+        FirebaseFirestore.instance.collection('posts').add({
+          'date': DateTime.now(),
+          'imageURL': url,
+          'quantity': newPost.quantity,
+          'latitude': geoData!.latitude,
+          'longitude': geoData.longitude
+        });
         // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
       }

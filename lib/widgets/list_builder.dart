@@ -24,28 +24,34 @@ class _ListBuilderState extends State<ListBuilder> {
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: CircularProgressIndicator());
         } 
-        return ListView.builder(
-          itemCount: snapshot.data!.docs.length,
-          itemBuilder: (context, index) {
-            var post = snapshot.data!.docs[index];
-            DateTime time = post['date'].toDate();
+        return Column(
+          children: <Widget>[
+            Expanded(
+              child:ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var post = snapshot.data!.docs[index];
+                  DateTime time = post['date'].toDate();
 
-            return Semantics(
-              label: 'Press for detail view.',
-              button: true,
-              enabled: true,
-              child: ListTile(
-                trailing: Text(post['quantity'].toString(),
-                  style: Theme.of(context).textTheme.headline6),
-                title:  Text(DateFormat.yMMMMEEEEd().format(time),
-                  style: Theme.of(context).textTheme.headline6),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => DetailScreen(post: post)));
-                },
-              )
-            );
-          }
+                  return Semantics(
+                    button: true,
+                    enabled: true,
+                    label: 'Press for detail view',
+                    child: ListTile(
+                      trailing: Text(post['quantity'].toString(),
+                        style: Theme.of(context).textTheme.headline6),
+                      title:  Text(DateFormat.yMMMMEEEEd().format(time),
+                        style: Theme.of(context).textTheme.headline6),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => DetailScreen(post: post)));
+                      },
+                    )
+                  );
+                }
+              ),
+            ),
+          ]
         );
       },
     );

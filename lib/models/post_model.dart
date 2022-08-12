@@ -1,16 +1,15 @@
-class WastePost {
+class PostModel {
   DateTime? date;
   String? imageURL;
   int? quantity;
   double? latitude;
   double? longitude;
 
-  WastePost(
-    {this.date, this.imageURL, this.quantity, 
-    this.latitude, this.longitude}
+  PostModel(
+    {this.date, this.imageURL, this.quantity, this.latitude, this.longitude}
   );
 
-  WastePost.fromMap(Map map) {
+  PostModel.fromMap(Map map) {
     date = map['date'];
     imageURL = map['imageURL'];
     quantity = map['quantity'];
