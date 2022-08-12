@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import '../models/post_model.dart';
 
 Widget newPostForm(BuildContext context, PostModel newPost){
-
   return Semantics(
     textField: true,
     focusable: true,
